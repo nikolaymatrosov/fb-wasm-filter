@@ -1,0 +1,21 @@
+[SERVICE]
+    Flush        1
+    Daemon       Off
+    Log_Level    info
+
+
+[INPUT]
+    Name dummy
+    Tag dummy.local
+    Dummy {"level": "4", "message": "warn"}
+
+[FILTER]
+    Name wasm
+    Match dummy.*
+    WASM_Path go.wasm
+    Function_Name level_mapper
+    Accessible_Paths .
+
+[OUTPUT]
+    Name  stdout
+    Match *

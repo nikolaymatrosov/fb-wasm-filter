@@ -1,18 +1,18 @@
 [SERVICE]
     Flush        1
     Daemon       Off
-    Log_Level    trace
+    Log_Level    info
 
 
 [INPUT]
     Name dummy
-    Tag dummy.local
+    Tag dummy.rust
     Dummy {"level": "4", "message": "warn"}
 
 [FILTER]
     Name wasm
-    Match dummy.*
-    WASM_Path filter.wasm
+    Match dummy.rust
+    WASM_Path rust.wasm
     Function_Name level_mapper
     Accessible_Paths .
 
